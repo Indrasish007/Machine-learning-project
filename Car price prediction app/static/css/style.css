@@ -1,0 +1,11 @@
+*{
+    margin :0;
+    padding : 0;
+    box-sizing: 0;
+}
+.bg-dark{
+    background-color: 75767B;
+}
+.mt{
+    margin-top: 50px;
+}
