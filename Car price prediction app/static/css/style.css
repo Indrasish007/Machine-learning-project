@@ -80,4 +80,9 @@ button {
    button:hover {
     color: #111;
    }
-   
+   input
+   {
+    width: 665px;
+    margin: 5px;
+    padding:5px;
+   }

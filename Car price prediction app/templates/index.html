@@ -14,7 +14,7 @@
         <u><b>Welcome to the car price predictor</b></u>
       </div>
       <div class="card-calculation">
-        <form action="#"method="post">
+        <form method="post" action="#" accept-charset="utf-8">
 
           <label for="companies"> Select Car Company</label>
           <select class="selectpicker form-control"name="companies" id="companies"required="1" onchange="load_car_models(this.id,'car_models')">
@@ -47,18 +47,18 @@
           {% endfor %}
 
           </select>
-          <label for="kms_driven"> Select kilometer</label>
-          <input type="number">
+          <label for="kms_driven"> Enter kilometer</label>
+          <input class="form-control" type="number" id="kms_driven" placeholder="000000">
           
           </select>
-
+          <button type="submit"><b>Predict Price</b></button>
         </form>
-        <button id="submit"><b>Predict Price</b></button>
+        
+        
       </div>
     </div>
     
-    
-    <!-- <script>
+        <!-- <script>
       function load_car_models(company_id, car_model_id)
        {
         var company = document.getElementById(company_id);
@@ -92,6 +92,7 @@
     option.value = model;
     modelsSelect.add(option);
 }); -->
+
 
 
 
