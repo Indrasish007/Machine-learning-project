@@ -18,7 +18,7 @@
 
           <label for="companies"> Select Car Company</label>
           <select class="selectpicker form-control"name="companies" id="companies"required="1" onchange="load_car_models(this.id,'car_models')">
-            <!-- ginger code -->
+            <!-- jinja2 code -->
           {% for company in companies %}
             <option value="{{company}}">{{company}}</option>
           {% endfor %}
@@ -27,8 +27,9 @@
           <label for="car_models"> Select Car Model</label>
           <select class="selectpicker form-control"name="car_models" id="car_models"required="1">
           
-            <option value=""></option>
-          
+            <!-- {% for car_models in car_models %}
+            <option value="{{car_models}}">{{car_models}}</option>
+          {% endfor %}  -->
           </select>
 
           <label for="year"> Select Year of purchase</label>
@@ -37,7 +38,7 @@
             <option value="{{year}}">{{year}}</option>
           {% endfor %}
           </select>
-
+          
           <label for="fuel_type"> Select Fuel Type</label>
           <select class="selectpicker form-control"name="fuel_type" id="fuel_type"required="1">
           {% for fuel_type in fuel_types %}
@@ -49,23 +50,41 @@
       </div>
     </div>
 
-    <script>
+    
+    <!-- <script>
+      function load_car_models(company_id, car_model_id)
+       {
+        var company = document.getElementById(company_id);
+        var car_models = document.getElementById(car_model_id);
+  
+        // Iterate over companies
+        for (var i = 0; i < companies.length; i++) 
+        {
+          if (company.value == companies[i])
+           {
+            
+           // Iterate over car_models for the selected company
+            for (var j = 0; j < car_models[companies[i]].length; j++) 
+            {
 
-      function load_car_models(company_id,car_model_id)
-      {
-          var companies=document.getElementById(company_id);
-          var car_models=document.getElementById(car_model_id) ;  
-          // console.log(companies.value);
-          
-        {% for company in companies %}
-          
-        {% endfor %}
-
+              var model = car_models[companies[i]][j];
+              var option = document.createElement('options');
+              option.text = model;
+              option.value = model;
+              car_model.options.add(option);
+            }
+          }
+        }
       }
+  </script> -->
+  
 
-    </script>
-
-
+   <!-- models.forEach(function(model) {
+    var option = document.createElement("option");
+    option.text = model;
+    option.value = model;
+    modelsSelect.add(option);
+}); -->
 
 
 
