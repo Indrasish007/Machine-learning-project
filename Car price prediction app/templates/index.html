@@ -51,8 +51,15 @@
           <input class="form-control" type="number" id="kms_driven" placeholder="000000">
           
           </select>
-          <button type="submit"><b>Predict Price</b></button>
-        </form>
+          <button type="submit" onclick="send_data()"><b>Predict Price</b></button>
+        </form><br>
+        <div class="row">
+          <div class="col-12" style="text-align: center;">
+            <h1><span id="prediction"></span></h1>
+          </div>
+
+
+        </div>
         
         
       </div>
@@ -92,6 +99,22 @@
     option.value = model;
     modelsSelect.add(option);
 }); -->
+
+<script>
+  function form_handler()
+  {
+    event.preventDefault();
+  }
+  function send_data()
+  {
+    document.querySelector('form').addEventListener('submit',form_handler);
+    var fd=new formData(document.querySelector('form'));
+    var xhr= new XMLHttpRequest();
+    xhr.open('post','/predict',true);
+    document.getElementById('prediction').innerHTML-="Predicting...";
+  }
+
+</script>
 
 
 

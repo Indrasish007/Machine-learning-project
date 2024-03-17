@@ -1,3 +1,4 @@
+
 from flask import Flask,render_template
 import pandas as pd
 
@@ -17,6 +18,10 @@ def index():
 
 if __name__=="__main__":
     app.run(debug=True)
+
+app.route('/predict', methods=['POST'])
+def predict():
+    return
 
 # from flask import Flask
 # import pandas as pd
