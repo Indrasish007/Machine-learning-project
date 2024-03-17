@@ -4,6 +4,7 @@ from numpy import int32
 import pandas as pd
 import pickle
 
+
 app =Flask(__name__)
 car=pd.read_csv('refine_car.csv')
 model=pickle.load(open('LinearRegressionModel.pkl','rb'))
@@ -24,11 +25,11 @@ def index():
 def predict():
     companies= request.form.get('companies')
     car_models=request.form.get('car_models')
-    year= request.form.get('year')
+    year= int(request.form.get('year'))
     fuel_type=request.form.get('fuel_type')
     kms_driven=request.form.get('kms_driven')
     print(companies,car_models,year,fuel_type,kms_driven)
-    prediction=model.predict(pd.DataFrame([[companies,car_models,year,fuel_type,kms_driven,]],columns=['name','company','year','kms_driven','fuel_type']))
+    prediction=model.predict(pd.DataFrame([[companies,car_models,year,fuel_type,kms_driven]],columns=['name','company','year','fuel_type','kms_driven']))
     print(prediction)
     return ""
 
