@@ -14,10 +14,10 @@
         <u><b>Welcome to the car price predictor</b></u>
       </div>
       <div class="card-calculation">
-        <form method="post" action="#" accept-charset="utf-8">
+        <form method="post" action="#">
 
           <label for="companies"> Select Car Company</label>
-          <select class="selectpicker form-control"name="companies" id="companies"required="1" onchange="load_car_models(this.id,'car_models')">
+          <select class="selectpicker form-control"name="companies" id="companies"required="1">
             <!-- jinja2 code -->
           {% for company in companies %}
             <option value="{{company}}">{{company}}</option>
@@ -48,18 +48,21 @@
 
           </select>
           <label for="kms_driven"> Enter kilometer</label>
-          <input class="form-control" type="number" id="kms_driven" placeholder="000000">
+          <input class="form-control" type="text" id="kms_driven" name="kms_driven" placeholder="000000">
           
           </select>
           <button type="submit" onclick="send_data()"><b>Predict Price</b></button>
-        </form><br>
+        </form>
+
+        <br>
+
         <div class="row">
-          <div class="col-12" style="text-align: center;">
+          <div class="col-12" align="center">
             <h1><span id="prediction"></span></h1>
+
           </div>
-
-
         </div>
+     </div>
         
         
       </div>
@@ -101,18 +104,31 @@
 }); -->
 
 <script>
-  function form_handler()
+  function form_handler(event)
   {
     event.preventDefault();
   }
   function send_data()
   {
     document.querySelector('form').addEventListener('submit',form_handler);
-    var fd=new formData(document.querySelector('form'));
-    var xhr= new XMLHttpRequest();
+    var fd=new FormData(document.querySelector('form'));
+    var xhr=new XMLHttpRequest();
     xhr.open('post','/predict',true);
-    document.getElementById('prediction').innerHTML-="Predicting...";
-  }
+    
+    document.getElementById('prediction').innerHTML="Predicting...";
+    xhr.onreadystatechange=function()
+    {
+      if (xhr.readyState==XMLHttpRequest.DONE)
+
+      {
+        document.getElementById('prediction').innerHTML="Prediction = ₹"+xhr.responseText;
+      }
+
+    }
+    xhr.onload=function(){}
+    xhr.send(fd);
+
+   }
 
 </script>
 

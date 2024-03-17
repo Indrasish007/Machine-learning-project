@@ -86,3 +86,11 @@ button {
     margin: 5px;
     padding:5px;
    }
+   textarea
+   {
+    width: 665px;
+   }
+   h1
+   {
+    font-size: 20px;
+   }
