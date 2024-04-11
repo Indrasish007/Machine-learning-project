@@ -25,13 +25,13 @@ def index():
 def predict():
     companies= request.form.get('companies')
     car_models=request.form.get('car_models')
-    year= int(request.form.get('year'))
+    # year= int(request.form.get('year'))
     fuel_type=request.form.get('fuel_type')
     kms_driven=request.form.get('kms_driven')
-    print(companies,car_models,year,fuel_type,kms_driven)
-    prediction=model.predict(pd.DataFrame([[companies,car_models,year,fuel_type,kms_driven]],columns=['name','company','year','fuel_type','kms_driven']))
-    print(prediction)
-    return ""
+    # print(companies,car_models,year,fuel_type,kms_driven)
+    # prediction=model.predict(pd.DataFrame([[companies,car_models,year,fuel_type,kms_driven]],columns=['name','company','year','fuel_type','kms_driven']))
+    # print(prediction)
+    return (output = "Hello World")
 
 if __name__=="__main__":
     app.run(debug=True)
