@@ -14,7 +14,7 @@
         <u><b>Welcome to the car price predictor</b></u>
       </div>
       <div class="card-calculation">
-        <form method="post" action="#">
+        <form method="post" action="{{ url_for('predict') }}">
 
           <label for="companies"> Select Car Company</label>
           <select class="selectpicker form-control"name="companies" id="companies"required="1">
