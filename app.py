@@ -41,7 +41,8 @@ def predict():
         predict_pipeline = PredictPipeline()
         print("Mid Prediction")
         results = predict_pipeline.predict(pred_df)
-        return render_template('print.html', price=results)
+        print(results)
+        return render_template('print.html', price=results[0])
 
 if __name__=="__main__":
     app.run(debug=True)
