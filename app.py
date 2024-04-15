@@ -4,34 +4,44 @@ from numpy import int32
 import pandas as pd
 import pickle
 
+from src.pipeline.predict_pipeline import CustomData, PredictPipeline
+
 
 app =Flask(__name__)
-car=pd.read_csv('refine_car.csv')
-model=pickle.load(open('LinearRegressionModel.pkl','rb'))
-@app.route('/')
 
+car=pd.read_csv('notebooks/data/refine_car.csv')
+
+
+@app.route('/')
 def index():
     companies=sorted(car['company'].unique())
     car_models=sorted(car['name'].unique())
-    year= sorted(car['year'].unique(),reverse=True)
     fuel_type=car['fuel_type'].unique()
     kms_driven=car['kms_driven'].unique()
     
-    return render_template("index.html",companies=companies,car_models=car_models,year=year,fuel_types=fuel_type,kms_driven=kms_driven)
+    return render_template("index.html",companies=companies,car_models=car_models,fuel_types=fuel_type,kms_driven=kms_driven)
 
 
 
-@app.route("/predict", methods=['POST'])
+@app.route("/predict", methods=['POST','GET'])
 def predict():
-    companies= request.form.get('companies')
-    car_models=request.form.get('car_models')
-    # year= int(request.form.get('year'))
-    fuel_type=request.form.get('fuel_type')
-    kms_driven=request.form.get('kms_driven')
-    # print(companies,car_models,year,fuel_type,kms_driven)
-    # prediction=model.predict(pd.DataFrame([[companies,car_models,year,fuel_type,kms_driven]],columns=['name','company','year','fuel_type','kms_driven']))
-    # print(prediction)
-    return (output = "Hello World")
+    if request.method == 'GET':
+        return render_template('index.html')
+    else:
+        data = CustomData(name=request.form.get('car_models'),
+                          company=request.form.get('companies'),
+                          year = request.form.get('year'),
+                          kms_driven=request.form.get('kms_driven'),
+                          fuel_type=request.form.get('fuel_type')
+                )
+        pred_df = data.get_data_as_dataframe()
+        print(pred_df)
+        print("Before Prediction")
+
+        predict_pipeline = PredictPipeline()
+        print("Mid Prediction")
+        results = predict_pipeline.predict(pred_df)
+        return render_template('print.html', price=results)
 
 if __name__=="__main__":
     app.run(debug=True)

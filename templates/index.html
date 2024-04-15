@@ -27,18 +27,14 @@
           <label for="car_models"> Select Car Model</label>
           <select class="selectpicker form-control"name="car_models" id="car_models"required="1">
           
-            {% for car_models in car_models %}
-            <option value="{{car_models}}">{{car_models}}</option>
-          {% endfor %} 
+            {% for car_model in car_models %}
+            <option value="{{car_model}}">{{car_model}}</option>
+            {% endfor %} 
           <option value="option"></option>
           </select>
 
           <label for="year"> Select Year of purchase</label>
-          <select class="selectpicker form-control"name="year" id="year"required="1">
-          {% for year in year %}
-            <option value="{{year}}">{{year}}</option>
-          {% endfor %}
-          </select>
+          <input type="number" class="selectpicker form-control" name="year" id="year" required=1>
           
           <label for="fuel_type"> Select Fuel Type</label>
           <select class="selectpicker form-control"name="fuel_type" id="fuel_type"required="1">
@@ -48,7 +44,7 @@
 
           </select>
           <label for="kms_driven"> Enter kilometer</label>
-          <input class="form-control" type="text" id="kms_driven" name="kms_driven" placeholder="000000">
+          <input class="form-control" type="number" id="kms_driven" name="kms_driven" placeholder="000000">
           
           </select>
           <button type="submit" onclick="send_data()"><b>Predict Price</b></button>
@@ -56,12 +52,12 @@
 
         <br>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-12" align="center">
             <h1><span id="prediction" font-size="20px"></span></h1>
 
           </div>
-        </div>
+        </div> -->
      </div>
         
         
