@@ -42,22 +42,7 @@ def predict():
         print("Mid Prediction")
         results = predict_pipeline.predict(pred_df)
         print(results)
-        return render_template('print.html', price=results[0])
+        return render_template('index.html', price=results[0])
 
 if __name__=="__main__":
     app.run(debug=True)
-# from flask import Flask
-# import pandas as pd
-# app = Flask(__name__)
-# car=pd.read_csv('refine_car.csv')
-
-# @app.route('/')
-# def hello_world():
-#     companies=sorted(car['company'].unique())
-#     car_models=sorted(car['name'].unique())
-#     year= sorted(car['year'].unique(),reverse=True)
-#     fuel_type=car['fuel_type'].unique()
-#     return str(len(car_models))
-
-# if __name__=="__main__":
-#      app.run(debug=True)
